@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-EN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tabelka jQuery</title>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Capital</th>
+                <th>Area</th>
+                <th>Population</th>
+                <th>Region</th>
+                <th>Subregion</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Capital</th>
+                <th>Area</th>
+                <th>Population</th>
+                <th>Region</th>
+                <th>Subregion</th>
+            </tr>
+        </tfoot>
+    </table>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+<script>
+$(document).ready(function() {
+    $('#example').DataTable({
+        "processing": true,
+        "serverSide": false,
+        "ajax": {
+            "url": "https://restcountries.com/v3.1/all",
+            "dataSrc": ""
+        },
+        "columns": [
+            { 
+                "data": "name.common",
+                "defaultContent": ""
+            },
+            { 
+                "data": "capital",
+                "defaultContent": ""
+            },
+            { 
+                "data": "area",
+                "defaultContent": ""
+            },
+            { 
+                "data": "population",
+                "defaultContent": ""
+            },
+            { 
+                "data": "region",
+                "defaultContent": ""
+            },
+            { 
+                "data": "subregion",
+                "defaultContent": ""
+            }
+        ],
+        "initComplete": function () {
+            this.api().page.len(100).draw();
+        }
+    });
+});
+</script>
+
+</body>
+</html>
